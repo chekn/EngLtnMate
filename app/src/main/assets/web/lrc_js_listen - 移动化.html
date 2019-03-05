@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>失名《南城柳色》闲拍 - 诗词吾爱网</title>
+    <!-- <script src="./debug/vconsole.min.js"></script> -->
+    <script src="./word_ln_data.js"></script>
+
+    <script src="./lib/jquery-2.1.1.min.js"></script>
+    <link href="./lib/material-icons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+
+    <style type="text/css">
+
+			@media screen and (max-width:321px){
+				body{font-size:12px}
+				.ctl_bar>div i { font-size: 20px }
+				.ctl_bar .wd_itl .wd_itl_box span { font-size: 13px }
+
+				.m-cityselect a, .m-cityselect p { font-size: 12px;}
+			}
+
+			@media screen and (min-width:321px) and (max-width:400px){
+				body{font-size:14px}
+				.ctl_bar>div i { font-size: 24px }
+				.ctl_bar .wd_itl .wd_itl_box span { font-size: 17px }
+
+				.m-cityselect a, .m-cityselect p { font-size: 14px;}
+			}
+
+			@media screen and (min-width:400px){
+				body{font-size:18px}
+				.ctl_bar>div i { font-size: 26px }
+				.ctl_bar .wd_itl .wd_itl_box span { font-size: 19px }
+
+				.m-cityselect a, .m-cityselect p { font-size: 16px;}
+			}
+
+			*{
+				margin: 0;
+				padding: 0;
+			}
+
+			html, body{
+				width: 100%;
+				height: 100%;
+			}
+
+			a {
+				text-decoration: none;
+				color: #000;
+			}
+
+			.sound_board {
+				width: 100%;
+				height: 100%;
+				margin: 0 auto;
+			}
+
+			ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			#talk {
+				height: 100%;
+			}
+			.content_box {
+				background-image: url('https://b-ssl.duitang.com/uploads/item/201510/04/20151004214120_GvTQP.jpeg');
+				/*background-image: url('http://p2.music.126.net/9JviYOgZbeeWLZGPTXkMKw==/17848372254058699.jpg');*/
+				/*background-image: url('http://p3.music.126.net/Nr2I1TNImvQlq9CBU7mV4w==/18497084115893946.jpg?param=640y300');*/
+				/*background-image: url('https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3254870300,4003247031&fm=173&app=25&f=JPG?w=640&h=438&s=0271CF3415B34F96864464C9030070A2');
+				*/
+				background-size: cover;
+				height: 90%;
+				position: relative;
+				overflow-y: hidden;
+			}
+
+			.content_box .swith_view {
+			    position: absolute;
+				right: 20px;
+				top: 20px;
+				border-radius: 3px;
+				border: 1px solid black;
+				width: 50px;
+				text-align: center;
+				line-height: 30px;
+			    background-color: #cecece59;
+				z-index: 10;
+			}
+
+			.content_box ul {
+				position: absolute;
+				top: 200px;
+				width: 100%;
+				transition:top 500ms linear;
+			}
+
+			.content_box ul li {
+				text-align: center;
+				font-size: 12px;
+				color: #989898;
+				display: block;
+				height: 32px;
+			}
+
+			.content_box ul li.light {
+				color: #fff;
+				font-size: 18px;
+			}
+
+
+			.ctl_box {
+				background: #2d2d2d;
+				height: 10%;
+			}
+
+			.ctl_bar {
+				color:  #fff;
+				height: 100%;
+				padding: 0 19px;
+				display: flex;
+				align-items: center;
+			}
+			.ctl_bar>div {
+				padding: 0 4px;
+				user-select: none;
+			}
+			.ctl_bar>div>span {
+				display: inline-block;
+				font-size: 12px;
+				float: left;
+			}
+			.ctl_bar>div>i {
+				cursor: pointer;
+				float:left;
+				/*font-size: 20px;*/
+			}
+			.ctl_bar .wd_start {
+
+			}
+			.ctl_bar div.pop_select>span {
+				width: 24px;
+				overflow: hidden;
+				/*text-overflow: ellipsis;*/
+				text-overflow: clip;
+				white-space: nowrap;
+			}
+			.ctl_bar div.pop_select:active {
+			    transition: background-color .2s,transform .5s;
+			    background: #ffffff26;
+				cursor: pointer;
+			}
+			.ctl_bar .wd_end{
+
+			}
+			.ctl_bar .wd_itl{
+				flex-grow: 1;/**/
+			}
+			.ctl_bar .wd_itl .wd_itl_box {
+				float: left;
+				width: 100%;
+				display:flex;
+			}
+			.ctl_bar .wd_itl .wd_itl_box i {
+				text-align: center;
+				flex: 1;
+			}
+			.ctl_bar .wd_itl .wd_itl_box span {
+				text-align: center;
+				/*font-size: 17px;*/
+				flex: 1;
+			}
+			.ctl_bar .wd_rdm{
+
+			}
+
+
+		</style>
+</head>
+
+<body>
+<div class="sound_board">
+
+    <section id="talk">
+        <div class="content_box" >
+            <a class="swith_view material-icons" href="javascript:void(0)">code</a>
+            <ul></ul>
+        </div>
+        <div class="ctl_box">
+            <div class="ctl_bar" >
+                <div class="wd_start pop_select"><span>开始</span><i class="mdui-icon material-icons">keyboard_arrow_down</i></div>
+
+                <div class="wd_end pop_select"><span>结束</span><i class="mdui-icon material-icons">keyboard_arrow_down</i></div>
+
+                <div class="wd_itl"><span style="">间隔(s)</span><br style="display: none;" />
+                    <div class="wd_itl_box" >
+                        <i class="mdui-icon material-icons sub">chevron_left</i><span>4</span><i class="mdui-icon material-icons add">chevron_right</i>
+                    </div>
+                </div>
+
+
+                <div class="wd_rdm"><span>随机</span><i class="mdui-icon material-icons">radio_button_checked</i></div>
+
+                <div class="wd_play">
+                    <i class="mdui-icon material-icons">play_arrow</i>
+                </div>
+            </div>
+
+
+        </div>
+        <audio id="wordAudio" style="display:none;" ></audio>
+    </section>
+</div>
+</body>
+</html>
+
+<script>
+var deviceWidth = document.documentElement.clientWidth;
+if(deviceWidth > 640) deviceWidth = 640;
+document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+
+function PopSelect(lnData) {
+	this.lnData = lnData;
+	this.$pop = null;
+	this.checkl1 = null;
+	this.checkl2 = null;
+	this.initVal = {"checkl1":null, "l1SrlTp":0, "checkl2":null, "l2SrlTp":0};
+	this.val = $.extend(true, {}, this.initVal);
+
+	this.initPopView = initPopView;
+	function initPopView(dom, ps4) {
+		var css = `.m-cityselect {
+				display: none;
+				color: #13030b; /*color: #13030be8; 手机端 color: 不支持rgba*/
+				position: absolute;
+				width: 6.4rem;
+				background-color: #fff;
+				font-size: 12px;
+			}
+			.cityselect-head {
+				width: 100%;
+			    border-bottom: 1px solid #b2b2b2;
+			}
+			.cityselect-head .cityselect-title {
+				text-align: center;
+				line-height: 30px;
+			}
+			.cityselect-content {
+				display: flex;
+				height: 3.822rem;
+				padding-bottom: 3px;
+			}
+			.cityselect-content>.cityselect-item {
+				display: block;
+				width: 50%;
+				height: inherit;
+				overflow-y: auto;
+			}
+			.cityselect-item-box {
+				display: block;
+				height: inherit;
+				padding: 0.113rem;
+			}
+			.cityselect-item-box a {
+				color: #333;
+				font-size: .26rem;
+				height: 40px;
+				line-height: 40px;
+				overflow: hidden;
+				border-bottom: 1px solid #d9d9d9;
+				display: flex;
+			}
+			.cityselect-item-box>a.crt {
+				color: #f23030;
+			}
+			.cityselect-item-box>a.crt:after {
+				display: block;
+				content: 'check';
+				font-family: 'Material Icons';
+			}
+
+			.cityselect-item-box>a span {
+				flex-grow: 1;
+				display: block;
+			}
+		`;
+		var x = `<div class="m-cityselect">
+					<div class ="cityselect-head" >
+						<p class="cityselect-title">所在地区</p>
+					</div>
+					<ul class="cityselect-content cityselect-next">
+						<li class="cityselect-item" >
+							<div class="cityselect-item-box">
+								<!-- 一级菜单内容 -->
+							</div>
+						</li>
+						<li class="cityselect-item" style ="background-color: #f5f5f5;" >
+							<div class="cityselect-item-box" >
+								<!-- 二级菜单内容 -->
+							</div>
+						</li>
+					</ul>
+				</div>
+		`;
+
+		var lnData = this.lnData;
+
+		var $pop = this.$pop = $(x);
+		$pop.find(".cityselect-title").text(ps4);
+		var $l1Box = $($pop.find(".cityselect-item-box")[0]);
+		var $l2Box = $($pop.find(".cityselect-item-box")[1]);
+		var curObj = this;
+		for(var l1 in lnData) {
+			var $a = $('<a class="" href="javascript:;"><span>' +l1+ '</span></a>');
+			$a.data({level: 1});
+			$l1Box.append($a);
+		}
+		$pop.on("click", ".cityselect-item-box>a", function(e) {
+			$pt = $(this).parent();
+			$pt.find("a.crt").removeClass("crt");
+			$(this).addClass("crt");
+
+			/*curObj.checkl1 = li; // 追踪上下文 变量值*/
+			var ln = $(this).data("level");
+			if(ln == 1) {
+				/* $.extend 第二个参数是 目标对象，第三个对象是 复制对象*/
+				var val = curObj.val = $.extend(true, curObj.val, curObj.initVal);
+				val.checkl1 = $(this).text();
+				val.l1SrlTp = $l1Box.parent().scrollTop();
+
+				//curObj.checkl1 = $(this).text();
+				curObj.loadL2Data();
+			} else if(ln == 2) {
+				//console.info(curObj.checkl2);
+				var val = curObj.val;
+				val.checkl2 = $(this).text();
+				val.l2SrlTp = $l2Box.parent().scrollTop();
+
+				//curObj.checkl2 = $(this).text();
+				$(dom).children("span").text(val.checkl2);
+				$pop.hide();
+			}
+
+			e.stopPropagation();
+		});
+
+		//css add only one
+		$("style").append( $(".m-cityselect").length == 0 ? css:"");
+		$(dom).css("position", "relative");
+		$(dom).append($pop);
+
+		$(dom).on("click", function(e){
+			/* 之前的 offsetLeft 取不到相对于父元素的偏移值,走不通. */
+			/* 放在上面初始化时,第二个元素定位尚未确定 也走不通 */
+			var popLeft = $(dom).parent()[0].getBoundingClientRect().left - $(dom)[0].getBoundingClientRect().left;
+			$pop.css("left", popLeft+"px");
+
+			var popBottom = $(dom).height() + ( $(dom).parent().height() - $(dom).height() )/2;
+			$pop.css("bottom", popBottom+"px");
+
+			/* 限定不能是 pop 内部的点击 */
+			if( $(e.target).parents(".m-cityselect").length == 0 )
+				$pop.toggle();
+
+		});
+		$(document).on("click",function(e){
+			/*  限定不能是 dom、dom内部 的点击  */
+			var pts = $(e.target).parents().toArray();
+			if( pts.indexOf(dom) == -1 &&  e.target != dom )
+				$pop.hide();
+		})
+	}
+
+	this.loadL2Data = loadL2Data;
+	function loadL2Data() {
+		var l1 = this.val.checkl1;
+		var curObj = this;
+
+		var $pop = this.$pop;
+		var $l2Box = $pop.find(".cityselect-item-box").eq(1);
+		$l2Box.html('');
+
+		var l2Data = lnData[l1];
+		for(var i in l2Data) {
+			var $a = $('<a class="" href="javascript:;"><span>' +l2Data[i].word+ '</span></a>');
+			$a.data({level: 2});
+			$l2Box.append($a);
+		}
+		//console.info(l1);
+		//console.info(JSON.stringify(l2Data));
+
+	}
+
+	this.checkVal = checkVal;
+	function checkVal( val ) {
+		if( !val ) {
+			val = this.val;
+			return {'level1': val.checkl1,
+					'l1SrlTp': val.l1SrlTp,
+					'level2': val.checkl2,
+					'l2SrlTp': val.l2SrlTp
+				};
+		} else {
+			var lnData = this.lnData;
+			var $pop = this.$pop;
+
+			/*   实现按 level1,level2 定位显示并不难，但实现成本较高，故放弃
+			var l1 = val.level1;
+			var l2 = val.level2;
+			var $l1Win = $pop.find(".cityselect-item-box").eq(0).parent();
+			var $l2Win = $pop.find(".cityselect-item-box").eq(1).parent();;
+			var pdTop = parseFloat( $l1Box.css("padding-top").replace("px","") );
+
+			var topics = Object.keys(lnData);
+			var l1i = topics.indexOf(l1);
+			$l1Win.scrollTop( pdTop + (40+1)*l1i );
+			$l1Win.find("a").eq(l1i).click();
+			*/
+			var l1 = val.level1;
+			var l2 = val.level2;
+			var l1SrlTp = val.l1SrlTp;
+			var l2SrlTp = val.l2SrlTp;
+			var $l1Win = $pop.find(".cityselect-item").eq(0);
+			var $l2Win = $pop.find(".cityselect-item").eq(1);
+
+			var topics = Object.keys(lnData);
+			var l1i = topics.indexOf(l1);
+
+			//构建 scrollTop 设定环境
+			$pop.css("visibility","hidden");
+			var showVal = $pop.css("display");
+			if( showVal == 'none')
+				$pop.show();
+
+			$l1Win.scrollTop( l1SrlTp );
+			$l1Win.find("a").eq(l1i).click();
+
+			var l2Data = lnData[l1];
+			var l2i = -1;
+			for(var i in l2Data) {
+				if(l2Data[i].word == l2) {
+					l2i = i;
+					break;
+				}
+			}
+			$l2Win.scrollTop( l2SrlTp );
+			$l2Win.find("a").eq(l2i).click();
+
+			//恢复 scrollTop 设定前环境
+			$pop.css('display', showVal);
+			$pop.css("visibility","visible");
+		}
+	}
+
+}
+
+function NumAddSub(addDom, numDom, minusDom, initNum) {
+	this.num = initNum;
+	this.$addDom = $(addDom);
+	this.$numDom = $(numDom);
+	this.$minusDom = $(minusDom);
+
+	this.assignEvent = assignEvent;
+	function assignEvent(){
+		var $numDom = this.$numDom;
+
+		var curObj = this;
+		this.$addDom.on("click", function() {
+			curObj.num++;
+			$numDom.text(curObj.num);
+
+		});
+
+		this.$minusDom.on("click", function() {
+			if(curObj.num == 0) {
+				console.info("左击触底.....");
+				return;
+			}
+			curObj.num--;
+			$numDom.text(curObj.num);
+
+		});
+
+		$numDom.text(curObj.num);
+	}
+
+	this.val = val;
+	function val(num) {
+		if( typeof(num) == 'undefined' )
+			return this.num;
+		else {
+			this.num = num;
+			this.$numDom.text(this.num);
+		}
+
+	}
+}
+
+function IconRadio(dom, isCheck){
+	this.isCheck = isCheck;
+	this.$icon = $(dom);
+
+	this.initView = initView;
+	function initView() {
+		var $icon = this.$icon;
+
+		var curObj = this;
+		$icon.on("click", function(){
+			curObj.toggle();
+		});
+
+		this.applyCheckState();
+	}
+
+	this.applyCheckState = applyCheckState;
+	function applyCheckState() {
+		var check = this.isCheck;
+		var $icon = this.$icon;
+		if(check)
+			$icon.html("radio_button_checked");
+		else
+			$icon.html("radio_button_unchecked");
+	}
+
+	this.toggle = toggle;
+	function toggle() {
+		this.isCheck = !this.isCheck;
+		this.applyCheckState();
+	}
+
+	this.val = val;
+	function val( isCheck ) {
+		if( typeof(isCheck) == 'undefined' )
+			return this.isCheck;
+		else{
+			this.isCheck = isCheck;
+			this.applyCheckState();
+		}
+	}
+}
+
+
+function WordPlayer(dom) {
+	this.isPlay = false;
+	this.audio = document.getElementById("wordAudio");
+
+	this.pId = 0;
+	this.wdList = null;
+	this.wdItl = 0;
+	this.isRdm = false;
+	this.cfgHistory = new Array();
+
+	this.$icon = $(dom);
+
+	this.getOutSetter = null;
+
+	this.initView = initView;
+	function initView() {
+		var audio = this.audio;
+		var $icon = this.$icon;
+
+		var curObj = this;
+		$icon.on("click", function(){ curObj.toggle(); });
+		audio.onended = function(e){ setTimeout(function(){curObj.playByList();}, curObj.wdItl * 1000); };
+		audio.onerror = function (e) { console.error("load error, " + audio.src ); console.error(e); }
+
+	}
+
+	this.playByList = playByList;
+	function playByList() {
+		var pId = this.pId;
+		var wdList = this.wdList;
+		var isPlay = this.isPlay;
+
+		if( pId < wdList.length-1 )
+			pId ++;
+		else {
+			pId = 0;
+			isPlay = false;
+		}
+
+		this.pId = pId;
+		this.isPlay = isPlay;
+
+		this.initPlayInfo();
+		this.applyPlayState();
+	}
+
+	this.initPlayInfo = initPlayInfo;
+	function initPlayInfo() {
+		var audio = this.audio;
+		var pId = this.pId;
+		var wdList = this.wdList;
+
+		audio.src = wdList[pId].sound;
+		$(".content_box ul").css("top", (200 - 32*pId) + "px" );
+		$($(".content_box ul li")[pId-1]).removeClass("light");
+		$($(".content_box ul li")[pId]).addClass("light");
+	}
+
+	this.applyPlayState = applyPlayState;
+	function applyPlayState() {
+		var isPlay = this.isPlay;
+		var audio = this.audio;
+		var $icon = this.$icon;
+		if(isPlay) {
+			if( audio.paused )
+				audio.play();
+			$icon.html("pause");
+		} else {
+			if( !audio.paused )
+				audio.pause();
+			$icon.html("play_arrow");
+		}
+	}
+
+	this.compareConfig = compareConfig;
+	function compareConfig(cfg){
+		/*{
+			"wdStart": {level1: "unit1_topic3", l1SrlTp: 0, level2: "relay race", l2SrlTp: 0},
+			"wdEnd": {level1: "unit4_topic3", l1SrlTp: 300, level2: "online", l2SrlTp: 0},
+			"wdItl": 4,
+			"wdRdm": false
+		}*/
+
+		var cfgHistory = this.cfgHistory;
+		if(cfgHistory.length == 0) return false;
+		var lastCfg = cfgHistory[cfgHistory.length -1];
+
+		var isSame = true;
+		for(var i in lastCfg) {
+			var old = lastCfg[i];
+			var fresh = cfg[i];
+			if(i == 'wdStart' || i == 'wdEnd') {
+				if( !( old.level1 == fresh.level1 && old.level2 == fresh.level2 ) ) {
+					isSame = false;
+					break;
+				}
+			} else {
+				if( old != fresh){
+					isSame = false;
+					break;
+				}
+			}
+		}
+		return isSame;
+
+	}
+
+	this.toggle = toggle;
+	function toggle() {
+
+		if( !this.isPlay ) {
+
+			if( !this.getOutSetter ) {
+				console.error("没提供 getOutSetter 实现....");
+				return;
+			}
+
+			var cfg = null;
+			try {
+				cfg = this.getOutSetter();
+			} catch( e ) {
+				console.error("参数不完全: " + e.message);
+				return;
+			}
+
+			//组件内部校验, 如果取到的cfg 不完整 退出...
+			if(cfg.wdStart.level2 == null || cfg.wdEnd.level2 == null || isNaN(cfg.wdItl) || typeof(cfg.wdRdm) != 'boolean') {
+				console.error("参数 组件内部校验不通过.....");
+				return;
+			}
+
+			if( !this.compareConfig(cfg) ) {
+				//上次播放一半的默认放弃....
+
+				var wdItl = cfg.wdItl;
+				var isRdm = cfg.wdRdm;
+				var pop1 = cfg.wdStart;
+				var pop2 = cfg.wdEnd;
+				var wdList = this.getList(pop1, pop2, isRdm);
+
+				$(".content_box ul").html("");
+				for(var i in wdList) {
+					$(".content_box ul").append("<li>" + wdList[i].word + "</li>");
+				}
+
+				this.pId = 0;
+				this.wdList = wdList;
+				this.isRdm = isRdm;
+				this.wdItl = wdItl;
+
+				this.cfgHistory.push(cfg);
+
+			}
+
+			this.initPlayInfo();
+		}
+
+		this.isPlay = !this.isPlay;
+		this.applyPlayState();
+	}
+
+	this.tell = tell;
+	function tell() {
+		return this.wdList[this.pId];
+	}
+
+	this.getList = getList;
+	function getList(pop1, pop2, isRdm) {
+		/* var x = Object.values(level_data); var x2= new Array(); for(var i in x) { x2 = x2.concat(x[i]) } 不稳定的实现*/
+		var ltnList = new Array();
+		var pop1Val = pop1;
+		var pop2Val = pop2;
+
+		if( pop1Val.level2 == null || pop2Val.level1 == null )
+			return null;
+
+		if( pop1Val.level1 == pop2Val.level1) {
+			var wds = level_data[pop1Val.level1 ];
+			var fndsi = false;
+			for( var i in wds ) {
+				if( !fndsi) {
+					if( wds[i].word == pop1Val.level2 )
+						fndsi = true;
+					else
+						continue;
+				}
+
+				ltnList.push(wds[i]);
+
+				if( wds[i].word == pop2Val.level2 )
+					break;
+
+			}
+
+		} else {
+
+			var fndsi = false;
+			var lnKeys = Object.keys(level_data);
+			var si = lnKeys.indexOf( pop1Val.level1 );
+			var di = lnKeys.indexOf( pop2Val.level1 );
+			for(var n in lnKeys) {
+				var wds = level_data[lnKeys[n]];
+
+				if( n < si)
+					continue;
+
+				//前半截处理
+				if( n == si) {
+					var fndsi = false;
+					for( var i in wds ) {
+						if( !fndsi) {
+							if( wds[i].word == pop1Val.level2 )
+								fndsi = true;
+							else
+								continue;
+						}
+
+						ltnList.push(wds[i]);
+					}
+				}
+
+				//当中的处理
+				if( n > si && n < di)
+					for( var i in wds ) {
+						ltnList.push(wds[i]);
+					}
+
+				//后半截处理
+				if( n == di ) {
+					for( var i in wds ) {
+						ltnList.push(wds[i]);
+						if( wds[i].word == pop2Val.level2 )
+							break;
+					}
+				}
+
+				if( n > di)
+					break;
+
+			}
+
+		}
+
+		if( isRdm )
+			this.randList(ltnList);
+
+		return ltnList;
+	}
+
+	this.randList = randList;
+	function randList(arr) {
+		var len = arr.length;
+	   for(var i=0;i<len;i++){
+		   var end = len - 1 ;
+		   var index = (Math.random()*(end + 1)) >> 0;
+		   var t = arr[end];
+		   arr[end] = arr[index];
+		   arr[index] = t;
+	   }
+	}
+
+}
+
+//Toast('不能购买自己的商品',2000);
+function Toast(msg,duration){
+    duration=isNaN(duration)?3000:duration;
+    var m = document.createElement('div');
+    m.innerHTML = msg;
+    m.style.cssText="width: 30%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 40%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+    document.body.appendChild(m);
+    setTimeout(function() {
+        var d = 0.5;
+        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+        m.style.opacity = '0';
+        setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+    }, duration);
+}
+
+var level_data = wordLnData;
+
+var popSelect = new PopSelect(level_data);
+popSelect.initPopView($(".wd_start")[0], "开始");
+
+var popSelect2 = new PopSelect(level_data);
+popSelect2.initPopView($(".wd_end")[0], "结束");
+
+var numAddSub = new NumAddSub(".wd_itl_box>.add", ".wd_itl_box>span", ".wd_itl_box>.sub", 0);
+numAddSub.assignEvent();
+
+var icon = new IconRadio(".wd_rdm i",false);
+icon.initView();
+
+var wordPlayer = new WordPlayer(".wd_play i");
+wordPlayer.getOutSetter = function(){
+	var e = {};
+	var wdStart = popSelect.checkVal();
+	var wdEnd = popSelect2.checkVal();
+	if( wdStart.level2 == null ) {
+		e.message = "起始单词未设定.....";
+		throw e;
+	}
+	if( wdEnd.level2 == null ) {
+		e.message = "截止单词未设定.....";
+		throw e;
+	}
+
+	var wdItl = numAddSub.val();
+	var wdRdm = icon.val();
+	return {
+			"wdStart": wdStart,
+			"wdEnd": wdEnd,
+			"wdItl": wdItl,
+			"wdRdm": wdRdm
+		};
+};
+wordPlayer.initView();
+
+
+$(".swith_view").on("click",function(){
+    android.goLsnHtml();
+});
+
+//var vConsole = new VConsole();
+
+/*
+#ref1: http://www.jq22.com/demo/jQueryYdxz201708082225/ (【去耦和组件实现】 参考 组件内操作事件内部化 实现)
+#ref2: http://www.jq22.com/demo/zcity201711152144/ (参考  触发 点击区域 限制  实现 )
+#ref3: https://www.cnblogs.com/bfc0517/p/8670149.html (参考 数组随机重排 实现)
+#ref4: https://blog.csdn.net/coslay/article/details/47446335 ( h5仿toast实现)
+
+#rel6: https://www.mdui.org/docs/material_icon (资料 查找音量图标 )
+#rel7: https://blog.csdn.net/xing20150602/article/details/79880888 (资料 js获取json的所有key)
+#rel8: https://www.cnblogs.com/newgold/p/4877354.html (资料 三种JS方法确定元素在数组中的索引值)
+#rel9: https://www.cnblogs.com/koala0521/p/7278056.html，https://www.cnblogs.com/xingxiangyi/p/6416468.html (资料 js数组合并)
+#rel10: https://blog.csdn.net/youth_lx/article/details/79892649 (资料 scrollTop设定问题)
+		http://www.w3school.com.cn/jquery/css_scrolltop.asp (资料 对不显示元素的描述有误)
+		http://www.cnblogs.com/xzhan/p/9342168.html
+#rel11: https://segmentfault.com/q/1010000016301717 (资料 br去掉高度。看 linong 的) 【br 默认3像素高度】
+*/
+</script>
+
+

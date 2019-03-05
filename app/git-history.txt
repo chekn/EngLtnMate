@@ -1,0 +1,447 @@
+    1  ls
+    2  pwd
+    3  cd Desktop/
+    4  ls
+    5  ls
+    6  cd /etc/
+    7  ls
+    8  pwd
+    9  cd ..
+   10  pwd
+   11  pwd
+   12  cd /etc/
+   13  ls
+   14  vi gitconfig
+   15  ls
+   16  cd ..
+   17  pwd
+   18  cd ..
+   19  cd /C/Users/CHEKN/
+   20  ls
+   21  ls --show-control-chars
+   22  cd Desktop/
+   23  ls
+   24  ls --show-control-chars --color=auto
+   25  ls
+   26  ls
+   27  ls
+   28  ls
+   29  cd Desktop/
+   33  ls
+   34  cd Desktop/
+   35  ls
+   37  ls
+   38  52
+   39  ls
+   40  cd Desktop/
+   41  ls
+   42  cat cs.txt 
+   43  cat 租房记事.txt 
+   44  vi cs.txt
+   46  cd git/
+   47  echo "#git 命令用法">README.MD
+   48  git init
+   49  git status
+   50  git config --global core.quotepath false
+   51  git status
+   52  git add *
+   53  git status
+   54  git commit -m "init"
+   55  git remote add origin https://code.aliyun.com/69880333/java.git
+   56  git push -u origin master
+   57  git push -f origin master
+   58  git status
+   59  git add git用法.txt 
+   60  git status
+   61  git commit -m "change"
+   62  git push -u origin master
+   63  git add README.MD 
+   64  git commit mit -m "format"
+   65  git commit -m "format"
+   66  git push -u origin master
+   67  git pull origin master
+   68  123ls
+   69  ls
+   70  cat git用法.txt 
+   71  cd ..
+   72  ls
+   73  cd git/
+   74  clear
+   75  git log
+   76  git branch -a
+   77  git branch
+   78  vi git用法.txt 
+   79  git add git用法.txt 
+   80  git commit -m "add branch useage"
+   81  git push -u origin master 
+   82  git branch -a
+   83  git branch
+   84  git branch r2
+   85  git push branch r2
+   86  git branch
+   87  git branch -0a
+   88  git branch -a
+   89  git checkout r2
+   90  git push
+   91  git checkout master
+   92  git status
+   93  git push origin r2
+   94  ls
+   95  vi git用法.txt 
+   96  git status
+   97  git log
+   98  git checkout r2
+   99  git branch r3
+  100  git push origin r3
+  101  git checkout r3
+  102  ls
+  103  vi new.txt
+  104  ls
+  105  git add new.txt 
+  106  git commit -m "test"
+  107  git push origin r3
+  108  git push origin :r3-35e7969c8af1d6bba7f8cf552e8eddc5628107ac
+  109  git branch -a
+  110  git push origin :r3
+  111  git push origin :r3
+  112  git branch -a
+  113  git checkout master 
+  114  vi git用法.txt 
+  115  git add git用法.txt 
+  116  git commit -m "add delete remote branch"
+  117  git push origin master 
+  118  ls
+  119  cat git用法.txt 
+  120  git checkout r3 
+  121  git ma
+  122  git br
+  123  git push origin r3
+  124  git push origin r3
+  125  git push origin :r3
+  126  git branch -d r3
+  127  git checkout r2
+  128  git branch -d r3
+  129  git branch -D r3
+  130  git checkout master 
+  131  vi git用法.txt 
+  132  git add git用法.txt 
+  133  git commit -m "modify"
+  134  git status 
+  135  ls
+  136  ls
+  137  git push origin master 
+  138  ls
+  139  git remote -v
+  140  ls
+  141  vi .gitignore
+  142  git add .gitignore 
+  143  git commit -m "add .gitignore"
+  144  git push origin master 
+  145  git commit -a
+  146  git status
+  147  vi .gitignore 
+  148  git status
+  149  git deff .gitignore
+  150  git diff .gitignore
+  151  git add .gitignore 
+  152  git commit -m "test git diff"
+  153  git push origin master 
+  154  git reflog
+  155  git log --pretty=oneline
+  156  git log
+  157  git log --pretty=oneline
+  158  vi new_.txt
+  159  git add new_.txt 
+  160  git commit -m "test reset"
+  161  git log
+  162  git log --pretty=oneline
+  163  git reset --hard HEAD^
+  164  git log --pretty=oneline
+  165  git reflog
+  166  git reset --hard 061e592
+  167  git log --pretty=oneline
+  168  git reset --hard HEAD^
+  169  git log --pretty=oneline
+  170  git checkout r2 
+  171  ls
+  172  touch new.txt
+  173  ls
+  174  cd ..
+  175  ls
+  176  mkdir tmp
+  177  cd tmp
+  178  git clone -b master https://code.aliyun.com/69880333/java.git
+  179  ls
+  180  cd java/
+  181  ls
+  182  git branch -b r3
+  183  git checkout -b r3
+  184  ls
+  185  vi git用法.txt 
+  186  git checkout master
+  187  git checkout r3
+  188  git add git用法.txt 
+  189  git commit -m "merge"
+  190  git checkout master
+  191  git log
+  192  git log --pretty=oneline
+  193  git merge r3
+  194  git log --pretty=oneline
+  195  git log --graph
+  196  git checkout r3
+  197  vi git用法.txt 
+  198  git add git用法.txt 
+  199  git commit -m "merge conflict"
+  200  git checkout master 
+  201  ls
+  202  vi git用法.txt 
+  203  git add git用法.txt 
+  204  git commit -m "merge conflict"
+  205  git merge r3
+  206  git status
+  207  vi git用法.txt 
+  208  git add git用法.txt 
+  209  git commit -m "conflict resolution"
+  210  git log --graph
+  211  git log --graph --abbrev-commit
+  212  git log --pretty = oneline
+  213  git log --pretty=oneline
+  214  git log --graph
+  215  git checkout r3
+  216  vi git用法.txt 
+  217  git add git用法.txt 
+  218  git commit -m "add merge fun"
+  219  git checkout master 
+  220  git merge --no-ff -m "merge with no-ff" r3
+  221  git log
+  222  git log --pretty=oneline
+  223  git log --graph
+  224  git log --graph --pretty=oneline
+  225  git status
+  226  vi git用法.txt 
+  227  git status
+  228  git stash
+  229  git status
+  230  git checkout r3
+  231  git checkout -b issue-101
+  232  vi git用法.txt 
+  233  git add git用法.txt 
+  234  git commit -m "fix"
+  235  git checkout r3
+  236  git merge --no-ff -m "fix 分支" issue-101
+  237  git branch -D issue-101
+  238  git checkout master 
+  239  git stash list
+  240  git stash pop
+  241  git stash list
+  242  git branch
+  243  git checkout  r3 
+  244  git status
+  245  git add git用法.txt 
+  246  git status
+  247  git commit -m "bug 分支"
+  248  git checkout master
+  249  git checkout r3
+  250  git checkout -b feature
+  251  vi tm.txt
+  252  git add tm.txt 
+  253  git commit -m "tm cc"
+  254  ls
+  255  git status
+  256  git checkout r3
+  257  git branch -d feature 
+  258  git branch -D feature 
+  259  git status
+  260  git config --global credential.helper store
+  261  git ..
+  262  cd ../
+  263  cd ../
+  264  cd git/
+  265  ls
+  266  git statusgit status
+  267  git statusgit status
+  268  git status
+  269  rm new.txt 
+  270  ls
+  271  git status 
+  272  git push origin master 
+  273  git status
+  274  git add git用法.txt 
+  275  git commit -m "finish"
+  276  git push origin master 
+  277  git status 
+  278  cat git用法.txt 
+  279  cd ..
+  280  ls
+  281  rm -rf tmp
+  282  cd tmp
+  283  ls
+  284  ls -lh
+  285  cd java/
+  286  ls -lh
+  287  ls
+  288  cd git/
+  289  ls
+  290  cat README.MD 
+  291  cat git用法.txt 
+  292  cat git用法.txt 
+  293  git status 
+  294  git add git用法.txt 
+  295  git commit -m "change encode - utf-8 finish"
+  296  git push origin master 
+  297  git config --global gui.encoding utf-8
+  298  exit
+  299  git pull origin 
+  300  git status
+  301  git pull origin 
+  302  git remote
+  303  git remote -v
+  304  git status
+  305  git pull origin 
+  306  git branch
+  307  git branch -a
+  308  git clone -b master https://code.aliyun.com/chekn/git-learn.git
+  309  git pull
+  310  git pull origin
+  311  git pull origin master
+  312  ls
+  313  cd git-learn/
+  314  ls
+  315  git pull
+  316  git pull origin
+  317  git pull origin
+  318  git checkout -b r3
+  319  git push origin r3
+  320  git checkout master 
+  321  git pull origin
+  322  cat git用法.txt 
+  323  git checkout r3
+  324  cat git用法.txt 
+  325  git push origin :r3
+  326  git branch -D r3
+  327  git checkout master 
+  328  git checkout -D r3
+  329  git brach -D r3
+  330  git branch -D r3
+  331  git brach
+  332  git branch
+  333  exit
+  334  git pull origin 
+  335  ls
+  336  ls -la
+  337  rm -rf .git
+  338  ls -la
+  339  rm -rf .git
+  340  ls -la
+  341  rm -rf .git
+  342  ls
+  343  ls -la
+  344  rm -rf .git
+  345  git add *
+  346  git pull
+  347  git status
+  348  git add *
+  349  git status
+  350  git commit -m m "rename class"
+  351  git pull
+  352  git status
+  353  git add *
+  354  git status
+  355  git commit -m "rename class"
+  356  git push origin master
+  357  git status
+  358  git add *
+  359  git status
+  360  git commit -m "test case"
+  361  git push  origin master 
+  362  git add *
+  363  git status
+  364  git commit -m "add FileVerify"
+  365  git push origin master 
+  366  exit
+  367  git checkout tmp-ppt 
+  368  git pull
+  369  exit
+  370  git checkout  tmp-ppt
+  371  git pull
+  372  git status 
+  373  git pull
+  374  git checkout r3
+  375  git pull
+  376  git add *
+  377  git commit -m "add one line set date code"
+  378  git push origin r3
+  379  exit
+  380  git pull
+  381  git status
+  382  git status
+  383  git status
+  384  npm install
+  385  node -v
+  386  git -v
+  387  cat -v
+  388  ls
+  389  exit
+  390  yum -v
+  391  apt -v
+  392  ls
+  393  git clone https://gitee.com/chekn/config-repo-51cto-video.git
+  394  cd config-repo-51cto-video/
+  395  ls
+  396  git status
+  397  git add *
+  398  git status
+  399  git commit
+  400  git commit *
+  401  git commit application
+  402  git commit * * * ss
+  403  git commit * "ccc"
+  404  git commit
+  405  git commt -m "init"
+  406  git commit -m "init"
+  407  git push -f origin master
+  408  exit
+  409  git add *
+  410  git status
+  411  git commit -m "foobar"
+  412  git push -f origin master
+  413  exit
+  414  git clone https://gitee.com/chekn/simple.git
+  415  git clone https://gitee.com/chekn/special.git
+  416  exit
+  417  git add *
+  418  git commit -m "init"
+  419  git push -f origin master
+  420  cd ..
+  421  cd special/
+  422  git add *
+  423  git commit -m "init"
+  424  git push -f origin master
+  425  exit
+  426  git add *
+  427  git commit -m "test,dev"
+  428  git push -f origin master
+  429  git add *
+  430  git commit -m "D-foo D-bar"
+  431  git push -f origin master
+  432  git clone https://github.com/5peak2me/QRCode
+  433  git clone https://gitee.com/oschina/android-app.git -b v2.9.0
+  434  exit
+  435  git clone https://gitee.com/yso/JingPai.git
+  436  exit
+  437  git clone https://gitee.com/way/Doughnut.git
+  438  exit
+  439  cp --help
+  440  mv --help
+  441  mv screenshot* c:/tom/
+  442  exit
+  443  dd --help
+  444  wget --help
+  445  exit
+  449  git config user.name
+  450  git config --global credential.helper store
+  452  history
+  453  history > git-history.txt
+
+
+#ref1: https://blog.csdn.net/bloombud/article/details/80431557 (git删除本地仓库)

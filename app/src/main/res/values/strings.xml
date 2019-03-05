@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">听力小助手</string>
+    <string name="res">chekn/engltnmate</string>
+    <string name="web_audio_dir">www.chekn.com/mate/audio</string>
+</resources>

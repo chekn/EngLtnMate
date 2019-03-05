@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>失名《南城柳色》闲拍 - 诗词吾爱网</title>
+    <meta charset="UTF-8" />
+    <!-- <script src="./debug/vconsole.min.js"></script> -->
+    <!-- 换这一行 数据源 --><script src="./dg_data.js"></script>
+    <script src="./lib/jquery-2.1.1.min.js"></script>
+    <link href="./lib/material-icons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+
+    <style type="text/css">
+
+			@media screen and (max-width:321px){
+				body{font-size:12px}
+				.ctl_bar button { font-size: 20px }
+			}
+
+			@media screen and (min-width:321px) and (max-width:400px){
+				body{font-size:14px}
+				.ctl_bar button { font-size: 24px }
+			}
+
+			@media screen and (min-width:400px){
+				body{font-size:18px}
+				.ctl_bar button { font-size: 26px }
+			}
+
+			*{
+				margin: 0;
+				padding: 0;
+			}
+
+			html, body{
+				width: 100%;
+				height: 100%;
+			}
+
+			a {
+				text-decoration: none;
+				color: #000;
+			}
+			ul {
+				list-style: none;
+			}
+
+			.sound_board, #talk {
+				width: 100%;
+				height: 100%;
+				margin: 0 auto;
+			}
+
+			#talk .grd_box {
+				height: 10%;
+				background-color: #2d2d2d;
+			}
+
+			.grd_box .grd_sel{
+				flex-grow: 1;
+				text-align: center;
+				border-radius: 3px;
+				line-height: 30px;
+			}
+			.grd_sel>div{
+				color: #abb2bf;
+				display: inline-block;
+			}
+
+			.right_border{
+				border-right: 1px solid;
+			}
+			.grd_box .swith_view {
+				width: 32px;
+				line-height: 32px;
+				text-align: center;
+				color: #abb2bf;
+			}
+
+			.content_box {
+				background-image: url('http://p2.music.126.net/SQF5vSrxTZ5myrmVWxFStQ==/3254554419585268.jpg');
+				background-size: cover;
+				height: 80%;
+				position: relative;
+				overflow-y: hidden;
+			}
+
+			.content_box #motion {
+			    position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 9;
+			}
+
+			.content_box ul {
+				position: absolute;
+				top: 200px;
+				width: 100%;
+				transition:top 500ms linear;
+			}
+
+			.content_box ul li {
+				text-align: center;
+				/*font-size: 12px;*/
+				color: #989898;
+				display: block;
+				height: 32px;
+			}
+
+			.light {
+				color: #fff;
+				font-size: 14px;
+			}
+
+			.ctl_box {
+				height: 10%;
+				background: #2d2d2d;
+			}
+
+			.ctl_bar {
+				height: 100%;
+				display: flex;
+			    align-items: center;
+				padding:0 5px;
+			}
+
+			.wd_itl {
+				width: 35px;
+			}
+
+			.ctl_bar button {
+				color: #abb2bf;
+				border-radius: 16px;
+				border: none;
+				background: transparent;
+				cursor: pointer;
+				width: 32px;
+				height: 32px;
+				/*font-size: 20px;*/
+				outline: none; /*设置 点击过 的边框的*/
+			}
+			/*带 多选择器限制 的css 比 少的 优先级高*/
+			.ctl_box .ctl_bar button:active {
+				background: hsla(0,0%,100%,.4);
+			}
+			/*.ctl_bar button:hover {
+				transition: background-color .2s,transform .5s;
+				background: hsla(0,0%,100%,.15);
+			}*/
+
+			.ctl_bar .progress {
+			    height: 12px;
+				flex-grow: 1;	/* flex剩余长度 占比*/
+				color: #61aeee;
+				background: rgba(0,0,0,.6);
+				cursor: pointer;
+				position: relative;
+			}
+			.ctl_bar .progress div {
+				transition: width 500ms linear;
+				height: 100%;
+				position: absolute;
+			}
+			.ctl_bar .progress .loaded {
+				background: hsla(0,0%,100%,.3);
+			}
+			.ctl_bar .progress .played {
+				background: currentColor;
+			}
+			.ctl_bar .progress .played::after{
+				content: " ";
+				cursor: pointer;
+				color: #fff;
+				position: absolute;
+				box-sizing: content-box;
+				width: 2px;
+				height: 100%;
+				right: 0;
+				top: 0;
+				border: 0 solid currentColor;
+				box-shadow: 0 0 0 transparent;
+				background: currentColor;
+				transition: .1s;
+			}
+			.ctl_bar .progress:hover .played::after {
+			    border-width: 3px 1px;
+				box-shadow: 0 0 4px rgba(0,0,0,.6);
+				top: -3px;
+				right: -1px;
+			}
+
+			.ctl_bar .timer {
+				color: #abb2bf;
+				font-size: 12px;
+				margin-left: 8px;
+				user-select: none;
+			}
+
+			.volume_twing{
+				position: absolute;
+				left: 50%;
+				top: -169px;
+				margin-left: -15px;
+				width: 30px;
+				height: 160px;
+
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+
+				z-index: 11;
+			}
+
+			.volume_twing_arrow{
+				width: 0px;
+				height: 0px;
+				border-top: 5px solid rgba(45, 45, 45, 0.62);
+				border-bottom: 0px solid transparent;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+			}
+
+			.volume_twing_outline{
+				/*border: 1px solid #fff;*/
+
+				width: 30px;
+				height: 145px;
+				background-color: rgba(45, 45, 45, 0.62);
+				border-radius: 2px;
+				padding: 5px 0;
+			}
+
+			.volume_twing_rule {
+				width: 6px;
+				height: 100%;
+				margin: 0 auto;
+				background: rgba(0,0,0,.6);
+				cursor: pointer;
+				position: relative;
+			}
+
+			.volume_pillar {
+				background-color: rgba(97, 174, 238, 0.62);
+				position: absolute;
+				bottom: 0px;
+				height: 0%;
+				width: 6px;
+				transition: height 500ms linear;
+			}
+			.volume_pillar::before {
+				content: " ";
+				cursor: pointer;
+				color: #fff;
+				position: absolute;
+				box-sizing: content-box;
+				width: 100%;
+				height: 2px;
+				right: 0;
+				top: 0;
+				border: 0 solid currentColor;
+				box-shadow: 0 0 0 transparent;
+				background: currentColor;
+				transition: .1s;
+			}
+			.volume_twing_rule:hover .volume_pillar::before {
+			    border-width: 1px 2px;
+				box-shadow: 0 0 4px rgba(0,0,0,.6);
+				top: -1px;
+				right: -2px;
+			}
+
+			audio {
+				display: none;
+			}
+
+			@keyframes spin {
+			  from {
+				transform: rotateZ(0);
+			  }
+			  to {
+				transform: rotateZ(1turn);
+			  }
+			}
+
+
+		</style>
+</head>
+
+<body>
+<div class="sound_board">
+
+    <section id="talk">
+        <div class="grd_box">
+            <div class="ctl_bar">
+                <div class="ctl_left">
+                    <button class="mdui-icon material-icons" >menu</button>
+                </div>
+                <div class="grd_sel">
+                    <div class="term">
+                        <span>仁爱 / 初中 / 八年级 / 上</span><i class="mdui-icon material-icons" style="float: right;">keyboard_arrow_down</i>
+                    </div>
+                </div>
+                <a class="swith_view material-icons" href="javascript:void(0)">code</a>
+            </div>
+        </div>
+        <div class="content_box" >
+            <canvas id="motion" ></canvas>
+            <ul></ul>
+        </div>
+        <div class="ctl_box">
+            <div class="ctl_bar">
+                <div class="ctl-left">
+                    <button class="material-icons prev" onclick ="javascript:void(0)">skip_previous</button><button class="material-icons play">play_arrow</button><button class="material-icons next">skip_next</button>
+                </div>
+                <div class="progress">
+                    <div class="loaded" style="width: 0;"></div><div class="played" style="width: 0;"></div>
+                </div>
+                <div class="timer">
+                    <span>1:01</span> / <span>3:41</span>
+                </div>
+                <div class="ctl-right">
+                    <button  class="material-icons mode">subdirectory_arrow_right</button>
+                    <!--<button  class="material-icons">keyboard_capslock</button>-->
+                    <div class="volume_ctl" style="position: relative; display: inline-block;">
+                        <button  class="material-icons volume">volume_up</button>
+                        <div class="volume_twing" style="display: none;" >
+                            <div class="volume_twing_outline">
+                                <div class="volume_twing_rule" >
+                                    <div class="volume_pillar"></div>
+                                </div>
+                            </div>
+                            <div class="volume_twing_arrow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<audio id="myAudio"></audio>
+
+
+</body>
+</html>
+
+<script>
+
+var x=`[00:01.48]千百年后谁又记得谁
+[00:03.38]演唱：韩磊
+[00:05.62]
+[00:20.30]当时你给我一个笑脸
+[00:24.06]让我心跳一辈子
+[00:28.22]使我的目光永远
+[00:32.00]溶进了你的背影
+[00:36.03]岁月老去我已不能爱
+[00:40.38]转过身往事突然清晰
+[00:44.34]重复你的目光
+[00:48.57]再也难串起我的记忆
+[00:53.00]夜深深梦缠绵人沉醉
+[01:00.58]既然离别难免今生何必相会
+[01:04.87]今生何必相会
+[01:09.96]流星闪过莫需伤悲
+[01:17.14]千百年之后 谁又还记得谁
+[01:21.27]谁又还记得 记得谁
+[01:27.32]
+[01:47.19]当时你给我一个笑脸
+[01:50.64]让我心跳一辈子
+[01:54.68]使我的目光
+[01:57.53]永远溶进了你的背影
+[02:02.84]岁月老去我已不能爱
+[02:07.20]转过身往事突然清晰
+[02:11.18]重复你的目光
+[02:15.45]再也难串起我的记忆
+[02:19.55]夜深深梦缠绵人沉醉
+[02:27.83]既然离别难免今生何必相会
+[02:31.64]今生何必相会
+[02:36.53]流星闪过莫需伤悲
+[02:44.22]千百年之后 谁又还记得谁
+[02:48.28]谁又还记得 记得谁
+[02:54.01]
+[02:57.38]夜深深梦缠绵人沉醉
+[03:04.88]既然离别难免今生何必相会
+[03:09.01]今生何必相会
+[03:13.71]流星闪过莫需伤悲
+[03:21.22]千百年之后 谁又还记得谁
+[03:25.51]谁又还记得 记得谁
+[03:32.07]`;
+var x1 = `[00:11.13]《孝庄秘史》片头曲
+[00:14.87]
+[00:23.71]你从天而将的你
+[00:29.69]落在我的马背上
+[00:35.50]如玉的模样清水般的目光
+[00:41.73]一丝浅笑让我心发烫
+[02:11.13][00:47.62]你头也不回的你
+[02:16.84][00:53.37]张开你一双翅膀
+[02:22.81][00:59.51]谁领着方向方向在前方
+[02:28.72][01:05.38]一声叹息将我一生变凉
+[02:34.70][01:11.24]你在那万人中央
+[02:39.86][01:16.30]感受那万丈荣光
+[02:46.58][01:23.12]看不见你的眼睛
+[02:52.48][01:28.93]是否会藏着泪光
+[02:58.46][01:35.17]我没有那种力量
+[03:03.69][01:40.39]想忘也终不能忘
+[03:10.40][01:47.10]只等到漆黑夜晚
+[03:16.25][01:53.07]梦一回那曾经心爱的姑娘
+[02:00.50]`;
+var x2 =`[00:01.81]家园
+[00:03.78]演唱：刘欢
+[00:15.76]冰雪早已覆盖我的足迹
+[00:23.67]远方的炊烟
+[00:25.71]摇曳温暖的召唤
+[00:30.91]风儿无法吹断我回望的视线
+[00:38.62]家园好像永远征途漫漫
+[00:45.91]一座座山 一道道岭 一片片川
+[00:49.04]我的故土这么难舍难离
+[00:53.16]一路路风霜 一阵阵雪雨 一次次别离
+[00:57.55]为了希望我们永不放弃
+[01:00.67]不知到底我会走向哪里
+[01:03.70]只凭着不灭的希望和一片丹心豪义
+[01:07.81]归途越来越清晰 我的心常在梦里来来去去
+[01:17.42]你的怀抱温暖我冻裂的期盼
+[01:25.44]期盼在天边 那里命运会改变
+[01:32.57]千山万水走过只为这一片
+[01:40.38]自由的天地 自由的家园
+[01:47.63]漂泊者的家到底在哪一边
+[01:55.57]回首故乡遥远
+[01:58.07]抬头前路依旧茫然
+[02:02.34]纵然只有倒下才是终点
+[02:10.21]我只有未来没有从前
+[02:17.65]一座座山 一道道岭 一片片川
+[02:20.64]我的故土这么难舍难离
+[02:24.81]一路路风霜 一阵阵雪雨 一次次别离
+[02:29.04]为了希望我们永不放弃
+[02:31.69]不知到底我会走向哪里
+[02:35.23]只凭着不灭的希望和一片丹心豪义
+[02:39.66]归途越来越清晰 我的心常在梦里来来去去
+[02:47.16]你的怀抱温暖我冻裂的期盼
+[02:55.04]期盼在天边 那里命运会改变
+[03:02.07]千山万水走过只为这一片
+[03:10.02]自由的天地 自由的家园
+[03:17.57]`;
+
+var regx = /\[\d{2}:\d{2}.\d{2}\]/g;
+
+function parseLyric(lyric) {
+	var lines = lyric.split('\n'),
+		pattern = /\[\d{2}:\d{2}.\d{2}\]/g,
+		result = [];
+	for(inx in lines) {
+		var data=lines[inx];
+		if (/\[\d{2}:\d{2}.\d{2}\].+/g.test(data)) {
+			var index = data.indexOf(']');
+			var time = data.substring(0, index+1),
+			value = data.substring(index+1);
+			var timeString = time.substring(1, time.length-2);
+			var timeArr = timeString.split(':');
+			result.push([parseInt(timeArr[0], 10) * 60 + parseFloat(timeArr[1]), value]);
+		};
+	}
+
+	//console.info(JSON.stringify(result));
+	return result;
+}
+
+/* 异常代码 pattern.test(data) 结果不定
+function parseLyric(lyric) {
+	var lines = lyric.split('\n'),
+		pattern = /\[\d{2}:\d{2}.\d{2}\]/g,
+		result = [];
+	for(inx in lines) {
+		var data=lines[inx];
+		console.info(inx + data);console.info(!pattern.test(data));console.info(pattern.test(data));console.info(!pattern.test(data));
+		if (!pattern.test(data)) {
+			var index = data.indexOf(']');
+			var time = data.substring(0, index+1),
+			value = data.substring(index+1);
+			var timeString = time.substring(1, time.length-2);
+			var timeArr = timeString.split(':');
+			result.push([parseInt(timeArr[0], 10) * 60 + parseFloat(timeArr[1]), value]);
+		};
+	}
+
+	console.info(JSON.stringify(result));
+	return null;
+}
+*/
+
+
+function formatTime(time) {
+  var min = Math.floor(time / 60);
+  var sec = Math.floor(time % 60);
+  return min + ':' + (sec < 10 ? '0' + sec : sec);
+}
+
+/* 无用代码
+function getRangeBox(event) {
+  var rangeBox = event.target;
+
+  if (event.type == 'click') {
+    rangeBox = event.target.parentElement;
+  }
+
+  return rangeBox;
+}
+*/
+
+function toast(msg,duration){
+	var css = `
+		min-width: 150px;
+		opacity: 0.7;
+		height: 30px;
+		color: rgb(255, 255, 255);
+		line-height: 30px;
+		text-align: center;
+		padding: 0 15px;
+		border-radius: 5px;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		z-index: 100;
+		background: rgb(0, 0, 0);
+		font-size: 12px;
+		white-space: nowrap; /*不加这句超过 150 了, div 自动换行*/
+	`;
+
+	duration=isNaN(duration)?3000:duration;
+	var m = document.createElement('div');
+	m.innerHTML = msg;
+	m.style.cssText= css;
+	document.body.appendChild(m);
+	setTimeout(function() {
+		var d = 0.5;
+		m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+		m.style.opacity = '0';
+		setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+	}, duration);
+}
+
+var deviceWidth = document.documentElement.clientWidth;
+if(deviceWidth > 640) deviceWidth = 640;
+document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+
+//$($("li")[0]).addClass("light")
+/*var linx = 0;
+var stItl = setInterval(function(){
+	$($("li")[linx-1]).removeClass("light");
+	$($("li")[linx]).addClass("light");
+	$("ul").css("top", (200-32*linx )+"px"); linx++;
+	if(linx == $("li").length)
+		clearInterval(stItl);
+},2000);*/
+var lnData = {
+	人教:{
+		"小学":[
+			{"一年级": ["上","下"]},
+			{"二年级": ["上","下"]},
+			{"三年级": ["上","下"]},
+			{"四年级": ["上","下"]},
+			{"五年级": ["上","下"]},
+			{"六年级": ["上","下"]}
+		],
+		"初中":[
+			{"七年级": ["上","下"]},
+			{"八年级": ["上","下"]},
+			{"九年级": ["上","下"]}
+		],
+		"高中":[
+			{"高一": ["上","下"]},
+			{"高二": ["上","下"]},
+			{"高三": ["上","下"]}
+		]
+	},
+	仁爱: {
+		"小学":[
+			{"一年级": ["上","下"]},
+			{"二年级": ["上","下"]},
+			{"三年级": ["上","下"]},
+			{"四年级": ["上","下"]},
+			{"五年级": ["上","下"]},
+			{"六年级": ["上","下"]}
+		],
+		"初中":[
+			{"七年级": ["上","下"]},
+			{"八年级": ["上","下"]},
+			{"九年级": ["上","下"]}
+		],
+		"高中":[
+			{"高一": ["上","下"]},
+			{"高二": ["上","下"]},
+			{"高三": ["上","下"]}
+		]
+	}
+};
+
+function Pop3UpSel(){
+
+	this.$pop = null;
+	this.$dom = null;
+
+	this.initView = initView;
+	function initView(dom){
+		var htm = `<div class="pop-modal-main" style="display: none;">
+						  <p class="address-title">年级学期</p>
+						  <ul class="optionwrapper">
+							<li class="option-menu option-menu-one active-option"></li>
+							<li class="option-menu option-menu-two"></li>
+							<li class="option-menu option-menu-three"></li>
+							<li class="option-menu option-menu-four"></li>
+						  </ul>
+						  <div class="option-content">
+							<ul class="option-group option-group-one" data-index="0" style="display: none;">
+								<!--
+								<li class="option-list option-list-one">
+									<span>北京</span>
+								</li>
+								-->
+							</ul>
+							<ul class="option-group option-group-two" data-index="1" style="display: none;">
+								<!--
+									<li class="option-list option-list-two">
+										<span>长宁区</span>
+									</li>
+								-->
+							</ul>
+							<ul class="option-group option-group-three" data-index="2" style="display: none;">
+								<!--
+									<li class="option-list option-list-three">
+										<span>城区</span>
+									</li>
+								-->
+							</ul>
+							<ul class="option-group option-group-four" data-index="3" style="display: none;">
+								<!--
+									<li class="option-list option-list-four">
+										<span>城区</span>
+									</li>
+								-->
+							</ul>
+						  </div>
+					</div>`;
+		var css = `.pop-modal-main{
+				color: #13030b;
+				position: absolute;
+				left: 0;
+				height: 75%;
+				width: 100%;
+				background-color: #fff;
+				z-index: 10;
+			}
+			.optionwrapper {
+				border-bottom: 1px solid #DDDDDD;
+				display: flex;
+				padding-left: .2rem;
+				height: .6rem;
+				box-sizing: border-box;
+			}
+			.option-menu {
+				padding: .1rem .1rem;
+				margin-right: .15rem;
+			}
+			.active-option {
+				border-bottom: 1px solid #FF2440;
+			}
+			.option-group {
+				display: none;
+				overflow: auto;
+				height: 100%;
+			}
+			.option-list {
+				padding: .2rem .2rem;
+				display: flex;
+			}
+			.option-list.crt{
+				color: #f23030;
+			}
+			.option-list.crt:after {
+				margin-left: .2rem;
+				display: block;
+				content: 'check';
+				font-family: 'Material Icons';
+			}`;
+
+		var $pop = this.$pop = $(htm);
+		var	$dom = this.$dom = $(dom);
+
+		$l1Tab = $pop.find(".option-menu-one");
+		$l2Tab = $pop.find(".option-menu-two");
+		$l3Tab = $pop.find(".option-menu-three");
+		$l4Tab = $pop.find(".option-menu-four");
+
+		$l1Box = $pop.find(".option-group-one");
+		$l2Box = $pop.find(".option-group-two");
+		$l3Box = $pop.find(".option-group-three");
+		$l4Box = $pop.find(".option-group-four");
+		var curObj = this;
+		var chooseMenuStr = '请选择';
+
+		// 初始化省份
+		var optionGroupOne = "";
+		$.each(lnData,function(index, el) {
+			optionGroupOne += `<li class="option-list option-list-one">
+						<span>${index}</span>
+					</li>`
+		});
+		$l1Box.html(optionGroupOne).show();
+		$l1Tab.html(chooseMenuStr);
+
+		//菜单激活
+		$pop.on("click",".option-menu",function(){
+			var i = $(this).index();
+			$(this).addClass('active-option').siblings().removeClass('active-option');
+			$pop.find(".option-group").eq(i).show().siblings().hide()
+		})
+
+		//1级 省份点击添加城市
+		$pop.on("click",".option-list-one",function(){
+			//var parentIndex = $(this).parent().attr("data-index");
+			var l1 = $(this).text().trim();
+			var citysArray = lnData[l1];
+
+			$(this).addClass('crt');
+			$(this).siblings().removeClass('crt');
+
+			var cityStr = "";
+			$.each(citysArray,function(index, el) {
+				cityStr += `<li class="option-list option-list-two">
+						<span>${index}</span>
+					</li>`
+			});
+
+			$l1Tab.removeClass('active-option').text(l1)
+			$l1Box.hide();
+			$l2Tab.html(chooseMenuStr).addClass('active-option')
+			$l2Box.html(cityStr).show();
+			$l3Tab.html("");
+			$l3Box.html("");
+			$l4Tab.html("");
+			$l4Box.html("");
+		})
+
+		//2级 城市点击添加城镇
+		$pop.on("click",".option-list-two",function(){
+			var parentIndex = $(this).parent().attr("data-index");
+			var l2 = $(this).text().trim();
+			var rangs = lnData[$l1Tab.text()][l2];
+
+			$(this).addClass('crt');
+			$(this).siblings().removeClass('crt');
+
+			var areaStr = "";
+			$.each(rangs,function(index, el) {
+				areaStr += `<li class="option-list option-list-three">
+						<span>${Object.keys(rangs[index])[0]}</span>
+					</li>`
+			});
+
+			$l2Tab.removeClass('active-option').text(l2)
+			$l2Box.hide();
+			$l3Tab.html(chooseMenuStr).addClass('active-option')
+			$l3Box.html(areaStr).show();
+			$l4Tab.html("");
+			$l4Box.html("");
+		})
+		//3级 选择城镇
+		$pop.on("click",".option-list-three",function(){
+			$(this).addClass('crt');
+			$(this).siblings().removeClass('crt');
+
+			var l1 = $l1Tab.text();
+			var l2 = $l2Tab.text();
+			var l3 = $(this).text().trim();
+
+			var pst = $(this).index();
+			var next = lnData[l1][l2][pst][l3];
+
+			var areaStr = "";
+			$.each(next,function(index, el) {
+				areaStr += `<li class="option-list option-list-four">
+						<span>${next[index]}</span>
+					</li>`
+			});
+
+			$l3Tab.removeClass('active-option').text(l3);
+			$l3Box.hide();
+			$l4Tab.html(chooseMenuStr).addClass('active-option')
+			$l4Box.html(areaStr).show();
+		});
+		//4级 选择城镇
+		$pop.on("click",".option-list-four",function(){
+			$(this).addClass('crt');
+			$(this).siblings().removeClass('crt');
+
+			var l1 = $l1Tab.text();
+			var l2 = $l2Tab.text();
+			var l3 = $l3Tab.text();
+			var l4 = $(this).text().trim();
+
+			var addressVal = l1 +" / "+ l2 +" / "+ l3 + " / " + l4;
+			$(dom).find(".term > span").html(addressVal)
+
+			$l4Tab.text(l3);
+			$pop.hide();
+
+			android.getClient(addressVal);
+		});
+		//
+		$pop.on("click",function(event){
+			var modalMain = $pop;
+			if (!modalMain.is(event.target)&& modalMain.has(event.target).length === 0) {
+				$pop.hide();
+			}
+
+			e.stopPropagation();
+		});
+
+		$(dom).on("click", function(e){
+			var popTop = $(dom).parent().height();
+			$pop.css("top", popTop+"px");
+
+			/* 限定不能是 pop 内部的点击 */
+			if( $(e.target).parents(".pop-modal-main").length == 0 )
+				$pop.toggle();
+
+		});
+
+		$(dom).append($pop);
+		$("style").append(css);
+	}
+
+	this.rstSetter = rstSetter;
+	function rstSetter(addressVal){
+		var $pop = this.$pop;
+		var $dom = this.$dom;
+
+		$l1Tab = $pop.find(".option-menu-one");
+		$l2Tab = $pop.find(".option-menu-two");
+		$l3Tab = $pop.find(".option-menu-three");
+		$l4Tab = $pop.find(".option-menu-four");
+
+		$l1Box = $pop.find(".option-group-one");
+		$l2Box = $pop.find(".option-group-two");
+		$l3Box = $pop.find(".option-group-three");
+		$l4Box = $pop.find(".option-group-four");
+
+
+		$l1Tab.html('请选择');
+		$l1Box.find(".crt").removeClass("crt");
+		$l2Tab.html("");
+		$l2Box.html("");
+		$l3Tab.html("");
+		$l3Box.html("");
+		$l4Tab.html("");
+		$l4Box.html("");
+		$l1Tab.trigger("click");
+
+		$dom.find(".term > span").html(addressVal)
+	}
+}
+var xp = new Pop3UpSel();
+xp.initView(".grd_sel");
+$(".swith_view").on("click",function(){
+    android.goLtnHtml();
+});
+
+//创建 听写块 对象
+function LessonPlayer(mList) {
+
+	this.audio = document.getElementById("myAudio");
+	//this.arrLyric = arrLyric;
+	this.mList = mList;
+	this.mMode = 'list';
+	this.mIndex = 2;
+	this.isResOk = true;
+	this.isPlay = false;
+
+	this.applyPlayState = applyPlayState;
+	function applyPlayState() {
+		var audio = this.audio;
+		var isPlay = this.isPlay;
+
+		if(isPlay ) {
+			if(audio.paused)
+				audio.play();	//在这里使用 异常 捕获 的 路走不通
+			$(".play").text("pause");
+		} else {
+			if(!audio.paused)
+				audio.pause();
+			$(".play").text("play_arrow");
+		}
+
+	}
+
+	this.play = play;
+	function play() {
+		/*var isPlay = this.isPlay;
+		isPlay = !isPlay; 非引用类型， 不会影响 所属 对象的属性 */
+		if( !this.isResOk)
+			return;
+
+		this.isPlay = !this.isPlay;
+		this.applyPlayState();
+	}
+	this.hitchView = hitchView;	/*这句得加上，否则找不到方法*/
+	function hitchView() {
+
+	}
+
+	this.initAudio = function() {
+
+		var curObj = this;
+		this.audio.ontimeupdate = function(e) {
+			if(this.ended){
+				curObj.playByMode('ended');
+			}
+			var lyric = curObj.mList[curObj.mIndex]._cvt_lrc;
+			for (var i = 0;i < lyric.length; i++) {
+				if (this.currentTime > lyric[i][0]) {
+					$($("li")[i-1]).removeClass("light");
+					$($("li")[i]).addClass("light");
+					$("ul").css("top", (200-32*i )+"px");
+
+					//process set
+					var rate = parseInt( 100 * this.currentTime / this.duration);
+					$(".played").width(rate+"%");
+
+					//time set
+					var intCurr = parseInt(this.currentTime);
+					var intDura = parseInt(this.duration);
+					$($(".timer span")[0]).text( formatTime(intCurr) );
+					$($(".timer span")[1]).text( formatTime(intDura) );
+				};
+			};
+		}
+		this.audio.oncanplay = function (e) {
+			var audio = this;
+			var eIndex = curObj.mIndex;
+			var bufferTimer = setInterval(function(){
+				if (eIndex != curObj.mIndex) {
+					clearInterval(bufferTimer);
+					return;
+				}
+
+				var bufferIndex = audio.buffered.length;
+				var bufferValue = audio.buffered.end(bufferIndex-1)/audio.duration * 100;
+
+				//console.log(bufferValue );
+				$('.loaded').width(bufferValue+"%");
+				if (Math.abs(audio.duration - audio.buffered.end(bufferIndex-1)) <1) {
+					clearInterval(bufferTimer);
+				}
+			},1000);
+		};
+		this.audio.onvolumechange = function (e) {
+			/* audio.volume 的最大值是 1 */
+			var audio = this;
+			var rate = audio.volume * 100;
+			$('.volume_pillar').height(rate + "%");
+		};
+		this.audio.onloadstart = function (e) {
+			console.info('load start .....');
+		};
+		this.audio.onerror = function (e) {
+			/*//错误状态
+			Media.error; //null:正常
+			Media.error.code; //1.用户终止 2.网络错误 3.解码错误 4.URL无效
+			//准备状态
+			Media.readyState;   //1:HAVE_NOTHING 2:HAVE_METADATA 3.HAVE_CURRENT_DATA 4.HAVE_FUTURE_DATA 5.HAVE_ENOUGH_DATA  */
+
+			var isPlay = curObj.isPlay;
+			var eIndex = curObj.mIndex;
+			var mode = curObj.mMode;
+
+			var audio = this;
+			console.error(audio.error.code);
+			console.error(audio.error.message);
+			curObj.isResOk = false;
+
+			if(isPlay) {
+				curObj.isPlay = false;
+				curObj.applyPlayState();
+
+				//分 mode 处理
+				if(mode == 'one') {
+					//提示资源失效，已自动停止
+					console.info("进入播放失败处理......");
+				} else {
+					//提示资源失效，将播放下一首
+					curObj.isPlay = isPlay;
+					toast("当前资源失效, 将于 5 秒后切换下一个.");
+					var waitTask = setTimeout( function(){
+						if (eIndex != curObj.mIndex) {
+							clearTimeout(waitTask);
+							return;
+						}
+
+						curObj.playByMode('next');
+					}, 5 *1000);
+				}
+			} else {
+				toast("资源 " + mList[eIndex].name + " 失效...", 2 * 1000);
+			}
+		};
+		this.audio.onwaiting = function (e) {
+			//show loading
+			//var audio = this;
+		};
+
+	}
+
+	this.applyModeState= applyModeState;
+	function applyModeState() {
+		var mode = this.mMode;
+		var modeIconMap = { //长串选择 替代写法，避免一长串if 的学法
+			'shuffle':'shuffle',
+			'one':'keyboard_tab',
+			'one_cycle':'repeat_one',
+			'list_cycle':'repeat',
+			'list':'subdirectory_arrow_right'
+		};
+
+		$(".mode").text(modeIconMap[mode]);
+	}
+
+	this.toggleMode = toggleMode;
+	function toggleMode(e) {
+		var modes = ["shuffle", "list", "list_cycle", "one", "one_cycle"];
+		var caModes = new CycleArray(modes);
+		caModes.locIndex(this.mMode);
+		this.mMode = caModes.next();
+		this.applyModeState();
+	}
+
+	this.playByMode = playByMode ;
+	function playByMode(action) {
+		/*  */
+		var mode = this.mMode;
+		var num = this.mList.length;
+		var index = this.mIndex;
+		var isPlay = this.isPlay;
+
+
+		//随机播放 shuffle
+		if(mode == 'shuffle') {
+			var randomIndex = parseInt(num * Math.random());
+			if (index == randomIndex + 1) {//下一首和当前相同，跳到下一首
+				index += 1;
+			}
+		}
+
+		//顺序播放 list
+		if(mode == 'list') {
+			if(action == 'prev')
+				index = (index == 0) ? 0: index-1;
+			else if(action == 'next')
+				index = (index == num-1) ? num-1 : index+1;
+			else if(action == 'ended')  {
+				if(index == num-1)
+					isPlay = false;
+				else
+					index = index+1;
+			}
+		}
+
+		//列表循环
+		if(mode == 'list_cycle') {
+			if(action == 'prev')
+				index = (index == 0) ? num-1 : index-1;
+			else if(action == 'next' || action == 'ended')
+				index = (index == num-1) ? 0 : index+1;
+		}
+
+		//单曲播放 one
+		if(mode == 'one') {
+			if(action == 'prev')
+				index = (index == 0) ? 0: index-1;
+			else if(action == 'next')
+				index = (index == num-1) ? num-1 : index+1;
+			else if(action == 'ended')  {
+				isPlay = false;
+			}
+		}
+
+		//单曲循环
+		if(mode == 'one_cycle') {
+			if(action == 'prev')
+				index = (index == 0) ? num-1 : index-1;
+			else if(action == 'next' )
+				index = (index == num-1) ? 0 : index+1;
+			else if(action == 'ended') {
+				//自动重放，不做任何事情
+			}
+		}
+
+		this.mIndex = index;
+		this.isPlay = isPlay;
+
+		this.initPlayInfo();
+		this.applyPlayState();
+	}
+
+	this.initPlayInfo = initPlayInfo;
+	function initPlayInfo(){
+		this.isResOk = true;
+		var audio = this.audio;
+
+		var i = this.mIndex;
+		audio.src = mList[i].sound;
+
+		$(".content_box ul").html("");
+		var vc = mList[i]._cvt_lrc;
+		for(var v in vc) {
+			$(".content_box ul").append("<li>" + vc[v][1] + "</li>");
+		}
+		$(".content_box").css("background-image","url('" + mList[i].album + "')");
+		//.content_box -> top 250px
+		$(".content_box ul").css("top","200px");
+
+		$('.loaded').width("0");
+		$('.played').width("0");
+
+		//time 0:00
+		$($(".timer span")[0]).text( "0:00" );
+		$($(".timer span")[1]).text( "0:00" );
+
+	}
+
+	this.clnInvalid = clnInvalid;
+	function clnInvalid() {
+		var isPlay = this.isPlay;
+		var isResOk = this.isResOk;
+		var mode = this.mMode;
+
+		console.info(this.mIndex + ".." + isResOk);
+		//处理 资源失效 正在播放 的状态
+		if(!isResOk && isPlay) {
+			this.isPlay = false;
+			this.applyPlayState();
+
+			//分 mode 处理
+			if(mode == 'one') {
+				//提示资源失效，已自动停止
+				console.info("进入播放失败处理......");
+			} else {
+				//提示资源失效，将播放下一首
+				this.isPlay = isPlay;
+				playByMode('next');
+			}
+		}
+	}
+
+	this.direDotPlay = direDotPlay;
+	function direDotPlay(dom, e) {
+		//e.target; 事件触发源头 元素
+		//var rate = e.offsetX / $(e.target).width() * 100;
+		//audio.currentTime = audio.duration * rate /100;
+		//console.info(rate);
+		if( !this.isResOk)
+			return;
+
+		var audio = this.audio;
+		var event = window.event || e;
+		var progressX = event.clientX - dom.getBoundingClientRect().left;
+		var rate = progressX / $(dom).width() * 100;
+
+		audio.currentTime = parseInt(audio.duration * rate /100);
+		//audio.removeEventListener('canplay',bufferBar,false);
+		//console.info("e.clientX:" + event.clientX +", rect.left:"+ dom.getBoundingClientRect().left);
+	}
+
+	this.direDotVolume = direDotVolume;
+	function direDotVolume(dom, e) {
+		var audio = this.audio;
+		var event = window.event || e;
+		var volumeY = dom.getBoundingClientRect().bottom - event.clientY;
+		audio.volume = (volumeY/$(dom).height()).toFixed(2);
+	}
+
+	this.initAudio2 = initAudio2;
+	function initAudio2() {
+		/* 需要 audio src 固定了之后的设置, 不然不会触发 onvolumechange 事件。 */
+		/* 好像 一修改 src之后，audio 之前的 还没触发的事件 都被 清除 掉了  */
+		this.audio.volume = 0.5;
+	}
+
+	this.toggleVolumeTwing = toggleVolumeTwing;
+	function toggleVolumeTwing() {
+		$(".volume_twing").toggle();
+	}
+}
+
+var imgCycleArray = new CycleArray(["http://img.mp.sohu.com/upload/20170808/ee7ab18b3e4b45aa9bde6df02eddc5fb_th.png",
+"http://img.mp.sohu.com/upload/20170808/f8154b7cac7d455e92fe13b8cebbd43e_th.png",
+"http://img.mp.sohu.com/upload/20170808/35988cfa0bef4107858d32c62497445b_th.png",
+"http://img.mp.sohu.com/upload/20170808/f0a9428123274101af5f6d2f81d2c66b_th.png",
+"http://img.mp.sohu.com/upload/20170808/109c46b06acf498cb7ea307c65ebf87d_th.png",
+"http://img.mp.sohu.com/upload/20170808/35bb5cd805ce4fd29b6a016fb9808ac4_th.png",
+"http://img.mp.sohu.com/upload/20170808/cc574f9d91ce47b489c9744a825308d8_th.png",
+"http://img.mp.sohu.com/upload/20170808/9758b43c17ce47a38ea2faeafe5d9ffd_th.png",
+"http://img.mp.sohu.com/upload/20170808/0cfe243bd5cf4708b3f2d182c24740c6_th.png",
+"http://img.mp.sohu.com/upload/20170808/c49dd8c4d766425daa9bebc9fe3c3b92_th.png",
+"http://img.mp.sohu.com/upload/20170808/34120b8f1b8a48b1b9bb631fa7b566c2_th.png",
+"http://img.mp.sohu.com/upload/20170808/fe44185b44654c98881e1b4c0e2c92b7_th.png",
+"http://img.mp.sohu.com/upload/20170808/009a305e8af345b6ad48c15cf22661a5_th.png",
+"http://img.mp.sohu.com/upload/20170808/b682adcd48a44db69afb2190fa879a68_th.png"]);
+for(var i in ms) {
+	ms[i].album = imgCycleArray.next();
+}
+
+var ms =[
+	{
+		name: '你-屠洪刚',
+		album: 'http://p1.music.126.net/CW8hn5zlTUVEpNhiyMwVcQ==/129742372090758.jpg',
+		sound: "https://m10.music.126.net/20181217103502/6b2ea3c626053804a296b17e01f2e95f/ymusic/ad8d/537d/6e46/4512b90f2a7c877369dc7057a1a16a6c.mp3",
+		lrc: x1
+	},{
+		name: '千百年后谁又记得谁-韩磊',
+		album: 'http://p2.music.126.net/eBZCXaEYoY819ZIzl6nAcg==/79164837212632.jpg',
+		sound: "https://m10.music.126.net/20181217180913/47e9f5ec13cb732acd8e74268b6789ad/ymusic/ad8d/537d/6e46/4512b90f2a7c877369dc7057a1a16a6c.mp3",
+		lrc: x
+	},{
+		name: '家园-刘欢',
+		album: 'http://p2.music.126.net/SQF5vSrxTZ5myrmVWxFStQ==/3254554419585268.jpg',
+		sound: "./闯关东.mp3",
+		lrc: x2
+	}
+].concat(ms);
+
+for(var m in ms) {
+	ms[m]._cvt_lrc = parseLyric(ms[m].lrc);
+}
+
+var xs= new LessonPlayer(ms);
+xs.initAudio();
+xs.initPlayInfo();
+xs.applyPlayState();
+xs.initAudio2();
+//
+
+$(".play")[0].onclick = function() {xs.play();}
+$(".prev")[0].onclick = function() {xs.playByMode('prev');}
+$(".next")[0].onclick = function() {xs.playByMode('next');}
+$(".progress")[0].onclick = function(e) { xs.direDotPlay(this,e); }
+$(".mode")[0].onclick = function(e) { xs.toggleMode(); }
+$(".volume_twing_rule")[0].onclick = function(e) { xs.direDotVolume(this,e); }
+$(".volume")[0].onclick = function(e) { xs.toggleVolumeTwing(); }
+
+
+//初始化滑动切换
+;(function(){
+	var cavs = $("#motion")[0];
+	var mnw = cavs.width = $(".content_box").width();
+	var mnh = cavs.height = $(".content_box").height();
+	var ctx = cavs.getContext("2d");
+	var mnrw = 50,mnrh = 100;
+
+	var c = $(".content_box")[0];
+	var startx =0, movex = 0;
+	c.ontouchstart = function(ev) {
+		var e = ev.touches[0];
+		startx = e.pageX;
+	};
+	c.ontouchmove = function(ev) {
+		var e = ev.touches[0];
+		movex = e.pageX - startx;
+
+		//less 拖拉,还剩多少路程
+		var less = deviceWidth/4 - Math.abs(movex);
+		if( less < 0 ) less = 0; //小于 0 直接拉满
+
+		if( less <= mnrw ) {
+			(function(){
+				ctx.clearRect(0,0,mnw,mnh);
+				//mnrw - less 移动的距离
+				var isRight = movex <0;
+				var dx = movex <0 ? mnw - (mnrw - less): -mnrw +( mnrw - less );
+				var dy = mnh/2-mnrh/2;
+				ctx.lineJoin = 'round';
+				ctx.fillStyle = 'rgba(206,206,206, 0.35)';//'#cecece59';
+				ctx.fillRect(dx, dy, mnrw,mnrh);
+
+				ctx.save();
+				ctx.strokeStyle = '#000';
+				ctx.beginPath();
+				var pdg = 13;
+
+				if( !isRight ) {
+					ctx.moveTo(dx + mnrw -pdg, dy +pdg);
+					ctx.lineTo(dx + pdg, dy + mnrh/2 );
+					ctx.lineTo(dx + mnrw -pdg, dy + mnrh-pdg );
+				} else {
+					ctx.moveTo(dx + pdg, dy +pdg);
+					ctx.lineTo(dx + mnrw -pdg, dy + mnrh/2 );
+					ctx.lineTo(dx + pdg, dy + mnrh-pdg );
+				}
+
+				ctx.stroke();
+				ctx.closePath();
+				ctx.restore();
+
+			})();
+		} else if(less > mnrw) {
+			ctx.clearRect(0,0,mnw,mnh);
+		}
+
+	};
+	c.ontouchend = function(ev) {
+		var emx = parseInt( movex );
+		console.info( "emx " + emx +", " + deviceWidth/4);
+		if(Math.abs(emx) > deviceWidth/4) {
+			xs.playByMode( emx < 0 ? 'next': 'prev');
+		}
+		ctx.clearRect(0,0,mnw,mnh);
+		movex = 0;
+	};
+})();
+
+function CycleArray(array){
+
+	this.index = 0;
+	this.array = array;
+
+	this.locIndex = locIndex;
+	function locIndex(item) {
+		/* for .. in.. 循环 前面的索引，是字符串呀 */
+		var array = this.array;
+		for(var i in array) {
+			if(array[i] == item) {
+				this.index = parseInt(i);
+				return this.index;
+			}
+		}
+	}
+
+	this.next = next;
+	function next() {
+		var array = this.array;
+		var i = this.index;
+		i = (i == array.length-1 ) ? 0 : i+1;
+		this.index = i;
+		return array[i];
+	}
+
+	this.prev = prev;
+	function prev() {
+		var array = this.array;
+		var i = this.index;
+		i = (i == 0) ? array.length-1 : i-1;
+		this.index = i;
+		return array[i];
+	}
+
+}
+
+/**
+https://www.cnblogs.com/kongxy/p/4581223.html (JS中的this对象详解)
+#ref1: http://flypursue.com/jekyll/update/2015/06/11/lyric.html (参考 歌词同步 设计)
+#ref2: https://blog.csdn.net/qiumuxia0921/article/details/49454017 (纯h5 js实现， 参考 缓存进度、调整播放进度 设计)
+#ref3: https://www.cnblogs.com/rocket1184/p/announcing-melody-player.html (参考 ctl-board ui实现)
+#ref4: https://blog.csdn.net/wcslb/article/details/54586758?fps=1&locationNum=8
+#ref5: https://www.cnblogs.com/ainyi/p/8716227.html (好看的 ui 实现)
+#ref6: https://blog.csdn.net/ffffffff8/article/details/78959617?utm_source=blogxgwz1 (参考 音量进度条ui 实现)
+
+#ref7: https://www.dedeyun.com/demo/985/ ( undo 移动化)
+
+http://www.5nd.com/gecilrc/59664.htm (资料 歌词)
+#rel1: https://www.mdui.org/docs/material_icon (资料 查找音量图标 )
+#rel2: http://www.w3school.com.cn/js/js_objects.asp (资料 JavaScript对象)
+#rel3: http://www.w3school.com.cn/jsref/dom_obj_audio.asp (资料 HTML DOM Audio对象)
+#rel4: http://www.w3school.com.cn/tags/html_ref_eventattributes.asp (资料 <audio> 事件)
+#rel5: http://www.w3school.com.cn/jsref/dom_obj_event.asp (资料 HTML DOM Event 对象)
+#rel6: http://www.w3school.com.cn/jsref/jsref_random.asp (资料 JavaScript random() 方法)
+#rel7: http://www.w3school.com.cn/tags/av_event_loadstart.asp (资料 Audio/Video DOM loadstart 事件)
+#rel8: http://www.w3school.com.cn/js/js_errors.asp (资料 JavaScript异常处理-Throw、Try和Catch)
+#rel9: https://segmentfault.com/a/1190000008767416 (资料 移动端适配 rem说明)
+	   https://www.cnblogs.com/webspace/p/8625464.html (资料 移动端 布局视口 和 可视视口 取异说明)
+	   https://blog.csdn.net/lpf_leo1992/article/details/78793617 (资料 关于百分比说明存在错误, 只关注rem的说明)
+	   http://m.kugou.com/ (资料 适配参考)
+#rel10: https://blog.csdn.net/qq_34020571/article/details/78923089 (资料 当下流行移动端适配解决方案)
+#rel11: https://blog.csdn.net/m0_37036014/article/details/80113635 (资料 vconsole使用资料)
+		https://github.com/Tencent/vConsole/blob/dev/doc/tutorial_CN.md
+
+真机适配
+#rel12: https://blog.csdn.net/qq379682421/article/details/84661318 (资料 解决真机不支持es6硬性缺陷)
+#rel13: https://www.jb51.net/article/49480.htm (资料 多行字符串的定义)
+#rel14: http://www.w3school.com.cn/jsref/jsref_slice_array.asp (资料 数组截断)
+
+rel15: http://www.w3school.com.cn/jsref/jsref_obj_string.asp (资料 js sub显示作用, substr设截取个数, substring同java)
+rel16: https://blog.csdn.net/wangrong111222/article/details/81605813 (资料 粗略的js mime获取解决方案)
+
+rel17: https://blog.csdn.net/jinuxm/article/details/54285919 (资料 弱模式报错 (intermediate value)(...) is not a function 问题)
+	   https://blog.csdn.net/liyujia6636/article/details/55669187
+
+rel18: http://www.jq22.com/jquery-info9592 (参考 解决 移动端canvas fillStyle不支持 #cecece59.改用rgba(,,,)的问题  )
+
+rel19: http://api.jquery.com/index/ (资料 $.index获取子元素索引)
+rel20: http://www.w3school.com.cn/jquery/traversing_siblings.asp (资料 $.siblings获取同胞元素)
+**/
+</script>
